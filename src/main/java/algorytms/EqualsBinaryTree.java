@@ -1,4 +1,4 @@
-package org.example;
+package algorytms;
 
 import org.w3c.dom.Node;
 

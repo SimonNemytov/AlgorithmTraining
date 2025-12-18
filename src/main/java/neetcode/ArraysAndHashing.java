@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class ArraysAndHashing {
+
     public static boolean hasDuplicates(int[] nums) {
         Set<Integer> set = new HashSet<>();
         for (int i : nums) {
@@ -27,7 +28,12 @@ public class ArraysAndHashing {
         return true;
     }
 
-    //    An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+    /**
+     *  An anagram is a string that contains the exact same
+     *  characters as another string,
+     *  but the order of the characters can be different.
+     */
+
     public static boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) return false;
         Map<Character, Integer> map = new HashMap<>();
