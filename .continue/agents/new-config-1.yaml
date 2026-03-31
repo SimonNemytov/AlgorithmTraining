@@ -1,0 +1,34 @@
+name: My Config
+version: 1.0.0
+schema: v1
+
+models:
+  - name: GLM-4.7 Agent (via GPT-4o alias)
+    provider: openai                      # ВАЖНО: используем openai, а не ollama
+    model: gpt-4o                          # Имя алиаса, который мы создали
+    apiBase: http://localhost:11434/v1    # Адрес Ollama (совместим с OpenAI API)
+    apiKey: ollama                         # Заглушка, можно любое значение
+    capabilities:
+      - tool_use                            # Явно включаем поддержку инструментов
+    supportsTools: true                     # Дополнительный флаг для агента
+    roles:
+      - chat
+      - edit
+      - apply
+
+  # Оставляем оригинальную модель как запасной вариант
+  - name: GLM-4.7 (Chat only)
+    provider: ollama
+    model: glm-4.7-flash:latest
+    apiBase: http://localhost:11434
+
+completionOptions:
+  temperature: 0.1
+  topP: 0.9
+
+# Включаем контекст проекта для агента
+contextProviders:
+  - name: code
+  - name: codebase
+    params:
+      maxTokens: 12000
