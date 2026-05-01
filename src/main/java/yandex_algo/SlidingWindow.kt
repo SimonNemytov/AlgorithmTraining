@@ -1,4 +1,5 @@
 package yandex_algo
+
 import kotlin.math.max
 
 fun main() {
