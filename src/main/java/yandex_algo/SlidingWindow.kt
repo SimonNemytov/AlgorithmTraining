@@ -56,6 +56,14 @@ fun main() {
     println(findAnagrams("cbaebabacd", "abc"))//[0,6]
     println(findAnagrams("abab", "ab"))//[0,1,2]
     println(findAnagrams("ababababab", "aab"))//[0,2,4,6]
+
+    println("---characterReplacement---")
+    println(characterReplacement("ABA", 1))//3
+    println(characterReplacement("ABAB", 1))//3
+    println(characterReplacement("AAAA", 1))//4
+    println(characterReplacement("ABAB", 2))//4
+    println(characterReplacement("AABABBA", 1))//4
+    println(characterReplacement("AABHGLBBBAGHV", 1))//4
 }
 
 
@@ -201,3 +209,30 @@ fun findAnagrams(s: String, p: String): List<Int> {
     return result
 }
 
+/**
+ * 424. Longest Repeating Character Replacement
+ */
+
+fun characterReplacement(s: String, k: Int): Int {
+    var result = 0
+
+    for ((i, n) in s.withIndex()) {
+        var temp = k
+        var right = i + 1
+        var left = if (i == 0) 0 else i - 1
+        while ((left >= 0 || right <= s.length - 1) && ((s[right] == n && s[left] == n) || temp > 0)) {
+            if (s[right] != n && temp > 0) {
+                temp--
+            } else if (s[left] != n && temp > 0) {
+                temp--
+            } else {
+                break
+            }
+            right++
+            left--
+        }
+        result = max(result, right - left)
+    }
+
+    return result
+}

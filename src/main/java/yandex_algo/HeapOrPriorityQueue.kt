@@ -1,6 +1,5 @@
 package yandex_algo
 
-import topKFrequent
 import java.util.PriorityQueue
 
 fun main() {
